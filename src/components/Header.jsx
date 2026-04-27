@@ -37,7 +37,7 @@ export default function Header() {
         ))}
       </h1>
       <p className={styles.sub}>
-        A workbench of small experiments — interactive things, half-finished ideas, and the occasional finished one.
+        A workbench of small experiments: interactive things, half-finished ideas, and the occasional finished one.
       </p>
     </header>
   );

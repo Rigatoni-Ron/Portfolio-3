@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import Header from './components/Header.jsx';
 import CardGrid from './components/CardGrid.jsx';
 import IframeStage from './components/IframeStage.jsx';
+import EdgeBlur from './components/EdgeBlur.jsx';
 import { projects } from './data/projects.js';
 import styles from './App.module.css';
 
@@ -32,6 +33,7 @@ export default function App() {
         onSelect={setSelectedId}
         onClose={() => setSelectedId(null)}
       />
+      <EdgeBlur />
     </div>
   );
 }

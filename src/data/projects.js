@@ -13,7 +13,7 @@ export const projects = [
     title: '3D Shape Animator',
     tags: ['Three.js', 'WebGL', 'motion'],
     description:
-      'Interactive scene for sculpting and animating primitive 3D shapes — drag, morph, and watch them respond in real time.',
+      'Interactive scene for sculpting and animating primitive 3D shapes. Drag, morph, and watch them respond in real time.',
     iframeSrc: '/projects/shape-animator/index.html',
     canvasBg: '#f5f3f1',
   },
