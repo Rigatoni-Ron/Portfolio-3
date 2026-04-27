@@ -12,6 +12,8 @@ const morphTransition = {
   mass: 0.7,
 };
 
+const visibilityTransition = { duration: 0.32, ease: [0.22, 1, 0.36, 1] };
+
 function useViewport() {
   const [vp, setVp] = useState(() => ({
     w: typeof window !== 'undefined' ? window.innerWidth : 1280,
@@ -25,7 +27,7 @@ function useViewport() {
   return vp;
 }
 
-export default function IframeStage({ projects, rects, selectedId, onSelect, onClose }) {
+export default function IframeStage({ projects, rects, selectedId, onSelect, onClose, visible = true }) {
   const vp = useViewport();
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function IframeStage({ projects, rects, selectedId, onSelect, onC
   return (
     <div className={styles.stage}>
       <AnimatePresence>
-        {selectedId && (
+        {visible && selectedId && (
           <motion.div
             key="backdrop"
             className={styles.backdrop}
@@ -72,18 +74,23 @@ export default function IframeStage({ projects, rects, selectedId, onSelect, onC
           <motion.div
             key={project.id}
             className={`${styles.frame} ${isSelected ? styles.selected : ''}`}
-            onClick={() => !isSelected && onSelect(project.id)}
-            initial={{ opacity: 0 }}
+            onClick={() => visible && !isSelected && onSelect(project.id)}
+            initial={{ opacity: 0, y: 12 }}
             animate={{
               ...target,
-              opacity: isOtherSelected ? 0 : 1,
+              opacity: !visible ? 0 : (isOtherSelected ? 0 : 1),
+              y: visible ? 0 : 12,
             }}
-            transition={morphTransition}
-            whileHover={!selectedId ? { y: -4 } : undefined}
+            transition={{
+              default: morphTransition,
+              opacity: { ...visibilityTransition, delay: visible ? 0.32 : 0 },
+              y: { ...visibilityTransition, delay: visible ? 0.32 : 0 },
+            }}
+            whileHover={visible && !selectedId ? { y: -4 } : undefined}
             style={{
               background: project.canvasBg,
               zIndex: isSelected ? 60 : 10,
-              pointerEvents: isOtherSelected ? 'none' : 'auto',
+              pointerEvents: !visible || isOtherSelected ? 'none' : 'auto',
               cursor: isSelected ? 'default' : 'pointer',
             }}
           >
