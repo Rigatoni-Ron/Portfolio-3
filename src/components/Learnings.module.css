@@ -33,12 +33,12 @@
   border-radius: 16px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-card);
   transition: box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .chart:hover {
-  box-shadow: 0 10px 6px rgba(0, 0, 0, 0.08), 0 24px 56px rgba(0, 0, 0, 0.26);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .chartImg {
@@ -70,12 +70,12 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-card);
   transition: box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .linkCard:hover {
-  box-shadow: 0 10px 6px rgba(0, 0, 0, 0.08), 0 24px 56px rgba(0, 0, 0, 0.26);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .linkTitle {
