@@ -89,7 +89,7 @@ export default function App() {
         onClose={() => setSelectedId(null)}
         visible={iframesVisible}
       />
-      <EdgeBlur />
+      <EdgeBlur hidden={Boolean(selectedId)} />
     </div>
   );
 }

@@ -5,6 +5,7 @@
   z-index: 80;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+  transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
   mask-image:
     linear-gradient(to bottom, black 0, transparent 100px),
     linear-gradient(to top, black 0, transparent 100px),

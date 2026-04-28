@@ -16,6 +16,57 @@ const visibilityTransition = { duration: 0.32, ease: [0.22, 1, 0.36, 1] };
 
 const liftSpring = { type: 'spring', stiffness: 420, damping: 22, mass: 0.5 };
 
+const LINE_INITIAL = 'M19 12H5';
+const LINE_LOOP = ['M19 12H5', 'M19 12H10', 'M19 12H5'];
+const HEAD_INITIAL = 'm12 19-7-7 7-7';
+const HEAD_LOOP = ['m12 19-7-7 7-7', 'm15.5 19-7-7 7-7', 'm12 19-7-7 7-7'];
+const arrowLoopTransition = { duration: 0.6, ease: 'easeInOut' };
+
+function ExitButton({ onClose }) {
+  const [hover, setHover] = useState(false);
+  return (
+    <motion.button
+      className={styles.close}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      initial={{ opacity: 0, scale: 0.6 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.6 }}
+      transition={{ duration: 0.18, delay: 0.12 }}
+      aria-label="Exit project"
+    >
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden
+        className={styles.closeIcon}
+      >
+        <motion.path
+          d={LINE_INITIAL}
+          animate={{ d: hover ? LINE_LOOP : LINE_INITIAL }}
+          transition={arrowLoopTransition}
+        />
+        <motion.path
+          d={HEAD_INITIAL}
+          animate={{ d: hover ? HEAD_LOOP : HEAD_INITIAL }}
+          transition={arrowLoopTransition}
+        />
+      </svg>
+      Exit
+    </motion.button>
+  );
+}
+
 function useViewport() {
   const [vp, setVp] = useState(() => ({
     w: typeof window !== 'undefined' ? window.innerWidth : 1280,
@@ -115,22 +166,7 @@ export default function IframeStage({ projects, rects, selectedId, onSelect, onC
             />
             <AnimatePresence>
               {isSelected && (
-                <motion.button
-                  className={styles.close}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onClose();
-                  }}
-                  initial={{ opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.18, delay: 0.12 }}
-                  aria-label="Close project"
-                >
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M4 4 L14 14 M14 4 L4 14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                  </svg>
-                </motion.button>
+                <ExitButton onClose={onClose} />
               )}
             </AnimatePresence>
           </motion.div>
