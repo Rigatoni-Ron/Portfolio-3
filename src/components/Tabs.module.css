@@ -27,11 +27,18 @@
   cursor: pointer;
   background: transparent;
   border: none;
-  transition: color 0.2s ease;
+  outline: 1px dashed transparent;
+  outline-offset: -2px;
+  transition: color 0.2s ease, background-color 0.2s ease, outline-color 0.2s ease;
 }
 
 .tab:hover {
   color: var(--text-900);
+}
+
+.tab:not(.active):hover {
+  background-color: rgba(20, 22, 26, 0.04);
+  outline-color: rgba(20, 22, 26, 0.16);
 }
 
 .active {
