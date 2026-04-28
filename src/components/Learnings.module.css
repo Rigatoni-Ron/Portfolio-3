@@ -33,13 +33,12 @@
   border-radius: 16px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .chart:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 3px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 6px rgba(0, 0, 0, 0.08), 0 24px 56px rgba(0, 0, 0, 0.26);
 }
 
 .chartImg {
@@ -71,13 +70,12 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+  box-shadow: 0 4px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .linkCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 3px rgba(0, 0, 0, 0.06), 0 10px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 6px rgba(0, 0, 0, 0.08), 0 24px 56px rgba(0, 0, 0, 0.26);
 }
 
 .linkTitle {

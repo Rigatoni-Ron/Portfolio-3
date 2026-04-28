@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styles from './Learnings.module.css';
 
 const COURSES = [
@@ -36,12 +37,24 @@ const PODCASTS = [
   },
 ];
 
+const cardHover = {
+  y: -10,
+  scale: 1.018,
+  transition: { type: 'spring', stiffness: 420, damping: 22, mass: 0.5 },
+};
+
 function LinkCard({ item }) {
   return (
-    <a href={item.url} target="_blank" rel="noreferrer" className={styles.linkCard}>
+    <motion.a
+      href={item.url}
+      target="_blank"
+      rel="noreferrer"
+      className={styles.linkCard}
+      whileHover={cardHover}
+    >
       <span className={styles.linkTitle}>{item.title}</span>
       <span className={styles.linkHost}>{item.host}</span>
-    </a>
+    </motion.a>
   );
 }
 
@@ -50,11 +63,12 @@ export default function Learnings() {
     <section className={styles.section}>
       <div className={styles.block}>
         <h2 className={styles.heading}>Github contributions</h2>
-        <a
+        <motion.a
           href="https://github.com/Rigatoni-Ron"
           target="_blank"
           rel="noreferrer"
           className={styles.chart}
+          whileHover={cardHover}
         >
           <img
             src="https://ghchart.rshah.org/c97a3e/Rigatoni-Ron"
@@ -62,7 +76,7 @@ export default function Learnings() {
             className={styles.chartImg}
           />
           <span className={styles.chartFooter}>github.com/Rigatoni-Ron</span>
-        </a>
+        </motion.a>
       </div>
 
       <div className={styles.block}>

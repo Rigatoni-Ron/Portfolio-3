@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Header from './components/Header.jsx';
 import Tabs from './components/Tabs.jsx';
@@ -21,6 +21,18 @@ export default function App() {
   const [selectedId, setSelectedId] = useState(null);
   const [rects, setRects] = useState({});
   const [currentTab, setCurrentTab] = useState('work');
+  const [iframesVisible, setIframesVisible] = useState(false);
+
+  // Defer iframe visibility flip until after the Learnings panel finishes
+  // exiting (matches AnimatePresence's 0.32s) so the entry animation lands
+  // on a clean stage. Exits flip immediately.
+  useEffect(() => {
+    if (currentTab === 'work') {
+      const id = setTimeout(() => setIframesVisible(true), 320);
+      return () => clearTimeout(id);
+    }
+    setIframesVisible(false);
+  }, [currentTab]);
 
   const reportRect = useCallback((id, rect) => {
     setRects((prev) => {
@@ -75,7 +87,7 @@ export default function App() {
         selectedId={selectedId}
         onSelect={setSelectedId}
         onClose={() => setSelectedId(null)}
-        visible={currentTab === 'work'}
+        visible={iframesVisible}
       />
       <EdgeBlur />
     </div>

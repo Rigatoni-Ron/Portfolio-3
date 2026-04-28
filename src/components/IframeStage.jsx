@@ -14,6 +14,8 @@ const morphTransition = {
 
 const visibilityTransition = { duration: 0.32, ease: [0.22, 1, 0.36, 1] };
 
+const liftSpring = { type: 'spring', stiffness: 420, damping: 22, mass: 0.5 };
+
 function useViewport() {
   const [vp, setVp] = useState(() => ({
     w: typeof window !== 'undefined' ? window.innerWidth : 1280,
@@ -80,13 +82,18 @@ export default function IframeStage({ projects, rects, selectedId, onSelect, onC
               ...target,
               opacity: !visible ? 0 : (isOtherSelected ? 0 : 1),
               y: visible ? 0 : 12,
+              scale: 1,
             }}
             transition={{
               default: morphTransition,
-              opacity: { ...visibilityTransition, delay: visible ? 0.32 : 0 },
-              y: { ...visibilityTransition, delay: visible ? 0.32 : 0 },
+              opacity: visibilityTransition,
+              y: liftSpring,
+              scale: liftSpring,
             }}
-            whileHover={visible && !selectedId ? { y: -4 } : undefined}
+            whileHover={visible && !selectedId ? {
+              y: -10,
+              scale: 1.018,
+            } : undefined}
             style={{
               background: project.canvasBg,
               zIndex: isSelected ? 60 : 10,
