@@ -20,7 +20,7 @@ function BookOpenIcon() {
 }
 
 const TABS = [
-  { id: 'work', label: 'Work', Icon: PenLineIcon },
+  { id: 'work', label: 'Ideas', Icon: PenLineIcon },
   { id: 'learnings', label: 'Learnings', Icon: BookOpenIcon },
 ];
 
