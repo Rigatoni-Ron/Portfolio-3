@@ -3,6 +3,15 @@ import { motion } from 'framer-motion';
 import styles from './Header.module.css';
 
 const TITLE = "Playground";
+const GREEN = '#3ea66a';
+const ORANGE = '#e08a3c';
+const BLUE = '#3a7bd5';
+
+function colorForIndex(i) {
+  if (i < 4) return GREEN;
+  if (i < 6) return ORANGE;
+  return BLUE;
+}
 
 export default function Header() {
   const [hovering, setHovering] = useState(false);
@@ -20,6 +29,7 @@ export default function Header() {
           <motion.span
             key={i}
             className={styles.letter}
+            style={{ color: hovering ? colorForIndex(i) : undefined }}
             animate={
               hovering
                 ? { y: -18, rotate: i % 2 === 0 ? -4 : 4, scale: 1.04 }
